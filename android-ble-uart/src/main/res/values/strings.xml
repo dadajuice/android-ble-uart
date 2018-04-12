@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">android-ble-uart</string>
+    <!-- Scan Activity -->
+    <string name="scan_nodevicesfound">No peripherals found</string>
+    <string name="scan_connecting">Connecting…</string>
+    <string name="scan_unexpecteddisconnect">Peripheral disconnected</string>
+    <string name="scan_scanbutton_scan">Scan for peripherals</string>
+    <string name="scan_scanbutton_scanning">Scanning…</string>
+    <string name="scan_device_localname">Local Name</string>
+    <string name="scan_device_address">Address</string>
+    <string name="scan_device_txpower">TX Power Level</string>
+    <string name="scan_device_services">Service UUIDs</string>
+    <string name="scan_device_rssi_notavailable">N/A</string>
+    <string name="scan_device_connect">Connect</string>
+    <string name="scan_tag_id">Id</string>
+    <string-array name="scan_devicetypes">
+        <item>Unkown</item>
+        <item>UART capable</item>
+        <item>Beacon</item>
+        <item>Eddystone</item>
+    </string-array>
+    <string name="uart_text_dataomitted">(Previous data omitted to improve performance…)</string>
+    <string name="mqtt_connection_lost">Mqtt connection to server lost</string>
+    <string name="mqtt_connection_failed">Mqtt server connection failed</string>
+
+    <!-- Bluetooth Adapter -->
+    <string name="dialog_error_no_ble">Bluetooth Low Energy not supported</string>
+    <string name="dialog_error_no_bluetooth">Bluetooth not available</string>
+
+    <!-- Location -->
+    <string name="dialog_error_nolocationservices_requiredforscan_marshmallow">Android 6 requires that Location Services are enabled to scan bluetooth peripherals.\nPlease, go to settings and enable it to start scanning peripherals</string>
+
+</resources>

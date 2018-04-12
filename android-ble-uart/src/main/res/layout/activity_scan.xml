@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/nodevicesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:text="@string/scan_nodevicesfound" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <ListView
+                android:id="@+id/scannedDevicesListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:childDivider="#00000000"
+                android:groupIndicator="@null" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+</RelativeLayout>
