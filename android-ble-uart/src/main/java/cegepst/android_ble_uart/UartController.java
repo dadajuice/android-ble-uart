@@ -17,7 +17,7 @@ public abstract class UartController extends Application implements BleManager.B
     private BleManager mBleManager;
     private BluetoothGattService mUartService;
     private BleUpdatableActivity activity;
-    private String buffer;
+    private String buffer = "";
 
     public void initializeUart() {
         mDataBuffer = new ArrayList<>();
@@ -64,17 +64,19 @@ public abstract class UartController extends Application implements BleManager.B
                 buffer += data;
                 Log.v("TEST", buffer);
                 if (buffer.contains("25")) {
-                    Log.v("TEST", data);
                     if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 activity.updateUi(buffer);
+                                mDataBuffer = new ArrayList<>();
+                                buffer = "";
                             }
                         });
+                    } else {
+                        mDataBuffer = new ArrayList<>();
+                        buffer = "";
                     }
-                    mDataBuffer = new ArrayList<>();
-                    buffer = "";
                 }
             }
         }
