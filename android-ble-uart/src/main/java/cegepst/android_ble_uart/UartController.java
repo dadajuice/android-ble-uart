@@ -62,13 +62,13 @@ public abstract class UartController extends Application implements BleManager.B
                 mDataBuffer.add(dataChunk);
                 final String data = BleUtils.bytesToText(dataChunk.getData(), true);
                 buffer += data;
-                Log.v("TEST", buffer);
                 if (buffer.contains("25")) {
                     if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                activity.updateUi(buffer);
+                                String b = buffer;
+                                activity.updateUi(b);
                                 mDataBuffer = new ArrayList<>();
                                 buffer = "";
                             }
