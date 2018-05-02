@@ -13,14 +13,13 @@ public abstract class UartController extends Application implements BleManager.B
     public static final String UUID_SERVICE = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
     public static final String UUID_RX = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
-    private volatile ArrayList<UartDataChunk> mDataBuffer;
     private BleManager mBleManager;
     private BluetoothGattService mUartService;
     private BleUpdatableActivity activity;
-    private String buffer = "";
+    private volatile String buffer = "";
 
     public void initializeUart() {
-        mDataBuffer = new ArrayList<>();
+        //mDataBuffer = new ArrayList<>();
         mBleManager = BleManager.getInstance(getApplicationContext());
         mBleManager.setBleListener(this);
         onServicesDiscovered();
@@ -59,10 +58,9 @@ public abstract class UartController extends Application implements BleManager.B
             if (characteristic.getUuid().toString().equalsIgnoreCase(UUID_RX)) {
                 final byte[] bytes = characteristic.getValue();
                 final UartDataChunk dataChunk = new UartDataChunk(System.currentTimeMillis(), UartDataChunk.TRANSFERMODE_RX, bytes);
-                //mDataBuffer.add(dataChunk);
                 final String data = BleUtils.bytesToText(dataChunk.getData(), true);
 
-                //if (data.contains("012345")) {
+                //if(data.contains("012345")) {
                   //  buffer = "";
                     //mDataBuffer = new ArrayList<>();
                 //}
@@ -70,13 +68,13 @@ public abstract class UartController extends Application implements BleManager.B
                 buffer += data;
                 if (buffer.contains("25")) {
                     if (activity != null) {
-                        //activity.runOnUiThread(new Runnable() {
-                          //  @Override
-                            //public void run() {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
                                 activity.updateUi(buffer);
                                 buffer = "";
-                            //}
-                        //});
+                            }
+                        });
                     }
                 }
             }
