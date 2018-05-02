@@ -58,7 +58,7 @@ public class ScanActivity extends AppCompatActivity implements BleManager.BleMan
         setContentView(R.layout.activity_scan);
         mBleManager = BleManager.getInstance(this);
         mScannedDevicesListView = (ListView) findViewById(R.id.scannedDevicesListView);
-        mScannedDevicesAdapter = new ScanAdapter(this, mScannedDevices);
+        mScannedDevicesAdapter = createScanAdapter(mScannedDevices);
         mScannedDevicesListView.setAdapter(mScannedDevicesAdapter);
         mNoDevicesTextView = (TextView) findViewById(R.id.nodevicesTextView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
@@ -99,6 +99,10 @@ public class ScanActivity extends AppCompatActivity implements BleManager.BleMan
 
         // Request Bluetooth scanning permissions
         requestLocationPermissionIfNeeded();
+    }
+
+    protected ScanAdapter createScanAdapter(ArrayList<BluetoothDeviceData> scannedDevices) {
+        return new ScanAdapter(this, scannedDevices);
     }
 
     @Override
@@ -333,7 +337,7 @@ public class ScanActivity extends AppCompatActivity implements BleManager.BleMan
         }
 
         BluetoothDeviceData deviceData = new BluetoothDeviceData(device, scanRecord, rssi);
-        if (device.getName() != null && device.getName().equals("FootprintGPS")) {
+        if (device.getName() != null && device.getName().contains(getString(R.string.scan_device_prefix))) {
             mScannedDevices.add(deviceData);
         }
     }

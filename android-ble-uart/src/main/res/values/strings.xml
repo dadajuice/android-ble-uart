@@ -1,4 +1,5 @@
 <resources>
+    <string name="scan_device_prefix">FootprintGPS</string>
     <string name="app_name">android-ble-uart</string>
     <!-- Scan Activity -->
     <string name="scan_nodevicesfound">No peripherals found</string>
