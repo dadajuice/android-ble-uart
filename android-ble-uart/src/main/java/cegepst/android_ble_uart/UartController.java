@@ -59,23 +59,23 @@ public abstract class UartController extends Application implements BleManager.B
             if (characteristic.getUuid().toString().equalsIgnoreCase(UUID_RX)) {
                 final byte[] bytes = characteristic.getValue();
                 final UartDataChunk dataChunk = new UartDataChunk(System.currentTimeMillis(), UartDataChunk.TRANSFERMODE_RX, bytes);
-                mDataBuffer.add(dataChunk);
+                //mDataBuffer.add(dataChunk);
                 final String data = BleUtils.bytesToText(dataChunk.getData(), true);
+
+                if (data.contains("012345")) {
+                    buffer = "";
+                    //mDataBuffer = new ArrayList<>();
+                }
+
                 buffer += data;
                 if (buffer.contains("25")) {
                     if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                String b = buffer;
-                                activity.updateUi(b);
-                                mDataBuffer = new ArrayList<>();
-                                buffer = "";
+                                activity.updateUi(buffer);
                             }
                         });
-                    } else {
-                        mDataBuffer = new ArrayList<>();
-                        buffer = "";
                     }
                 }
             }
