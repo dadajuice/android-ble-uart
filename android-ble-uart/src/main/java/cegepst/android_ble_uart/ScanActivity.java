@@ -333,7 +333,7 @@ public class ScanActivity extends AppCompatActivity implements BleManager.BleMan
         }
 
         BluetoothDeviceData deviceData = new BluetoothDeviceData(device, scanRecord, rssi);
-        if (device.getName() != null && device.getName().equals("vovBLE")) {
+        if (device.getName() != null && device.getName().equals("FootprintGPS")) {
             mScannedDevices.add(deviceData);
         }
     }
