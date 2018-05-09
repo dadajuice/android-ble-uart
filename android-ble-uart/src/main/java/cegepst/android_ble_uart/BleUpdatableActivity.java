@@ -7,14 +7,14 @@ public abstract class BleUpdatableActivity extends AppCompatActivity {
     public abstract void updateUi(String receivedData);
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         ((UartController) getApplication()).registerUi(this);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         // Comment for gradle
         ((UartController) getApplication()).unregisterUi();
     }
