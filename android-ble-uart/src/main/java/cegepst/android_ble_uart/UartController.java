@@ -19,7 +19,6 @@ public abstract class UartController extends Application implements BleManager.B
     private volatile String buffer = "";
 
     public void initializeUart() {
-        //mDataBuffer = new ArrayList<>();
         mBleManager = BleManager.getInstance(getApplicationContext());
         mBleManager.setBleListener(this);
         onServicesDiscovered();
@@ -49,7 +48,6 @@ public abstract class UartController extends Application implements BleManager.B
     public void onServicesDiscovered() {
         mUartService = mBleManager.getGattService(UUID_SERVICE);
         mBleManager.enableNotification(mUartService, UUID_RX, true);
-        Log.v("TEST", "service discovered");
     }
 
     @Override
@@ -77,7 +75,7 @@ public abstract class UartController extends Application implements BleManager.B
 
     @Override
     public void onDataAvailable(BluetoothGattDescriptor descriptor) {
-        Log.v("TEST", "available data (descriptor)");
+
     }
 
     @Override

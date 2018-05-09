@@ -51,11 +51,12 @@ public class ScanActivity extends AppCompatActivity implements BleManager.BleMan
     private BleDevicesScanner mScanner;
     private ArrayList<BluetoothDeviceData> mScannedDevices = new ArrayList<>();
     private BluetoothDeviceData mSelectedDeviceData;
+    protected int layoutContentView = R.layout.activity_scan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
+        setContentView(layoutContentView);
         mBleManager = BleManager.getInstance(this);
         mScannedDevicesListView = (ListView) findViewById(R.id.scannedDevicesListView);
         mScannedDevicesAdapter = createScanAdapter(mScannedDevices);
