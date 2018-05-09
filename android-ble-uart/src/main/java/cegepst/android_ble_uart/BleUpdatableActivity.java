@@ -15,6 +15,7 @@ public abstract class BleUpdatableActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        // Comment for gradle
         ((UartController) getApplication()).unregisterUi();
     }
 }
