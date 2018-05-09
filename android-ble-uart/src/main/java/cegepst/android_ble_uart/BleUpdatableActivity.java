@@ -15,7 +15,6 @@ public abstract class BleUpdatableActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Comment for gradle
         ((UartController) getApplication()).unregisterUi();
     }
 }
